@@ -1,0 +1,34 @@
+<div class="user-show-page">
+  <%= render "shared/header"%>
+  <%= render "shared/flash_message" %>
+  <div class="profile mt-4">
+    <div class="profile-title">プロフィール</div>
+
+    <%# またユーザー情報で画像があるかどうかで条件分岐 %>
+    <% unless @user.image.present? %>
+      <div class="profile-default-img mt-4"></div>
+    <% else %>
+      <%= image_tag @user.image, class: "profile-img mt-4" %>
+    <% end %>
+    <%# 終わり %>
+    
+    <div class="profile-name mt-4">
+      <%= @user.nickname %>
+    </div>
+
+    <%# フォロー機能を実装してから、プログラムを加える %>
+    <div class="profile-follow mt-4">
+      <p class="profile-show-follow">50フォロー</p>
+      <p class="profile-show-follower">10000フォロワー</p>
+    </div>
+    <%# 終わり %>
+
+    <div class="profile-introduction mt-4">
+      <%= @user.introduction %>
+    </div>
+
+    <%= link_to "情報を編集する", edit_user_registration_path, class: "user-edit-btn p-3 text-white" %>
+
+  </div>
+  
+</div>

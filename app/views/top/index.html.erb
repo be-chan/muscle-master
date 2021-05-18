@@ -1,0 +1,18 @@
+<div class="jumbotron">
+  <%= render "shared/navbar"%>
+
+  <div class="top-title">
+    <h1 class="text-white text-center">
+      Muscle Master 
+    </h1>
+  </div>
+
+  <div class="top-authentication text-center">
+    <div class="top-authentication__sign-up-btn m-3">
+      <%= link_to "アカウントを作成する", new_user_registration_path, class: "btn text-white" %>
+    </div>
+    <div class="top-authentication__sign-in-btn m-3">
+      <%= link_to "ログイン", new_user_session_path, class: "btn text-white" %>
+    </div>
+  </div>
+</div>

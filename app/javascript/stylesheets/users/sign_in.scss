@@ -1,0 +1,32 @@
+.sign-in-page {
+  height: 100%;
+  background-color: #dddbdb;
+}
+
+.card {
+  max-width: 480px;
+  margin: 0 auto;
+  margin-top: 25vh;
+}
+
+.sign-in__submit-btn {
+  background-color: #4689FF;
+  height: 38px;
+  transition: 0.3s all;
+  &:hover {
+    background-color: #343a40;
+  }
+}
+
+@media (max-width: 480px) {
+  .sign-in-page {
+    max-width: initial;
+  }
+  .card {
+    border: none;
+    margin-top: 5vh;
+    &-header {
+      background-color: #fff;
+    }
+  }
+}

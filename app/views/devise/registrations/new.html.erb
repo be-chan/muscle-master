@@ -1,0 +1,50 @@
+
+<div class="sign-up-page">
+  <%= render "shared/header"%>
+  <div class="card" id="card-sign-up">
+    <div class="card-header">
+      アカウントを作成する
+    </div>
+
+    <div class="card-body">
+      <%= form_with scope: resource, as: resource_name, url: registration_path(resource_name), local: true do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="form-group">
+          <%= f.text_field :nickname, autofocus: true, class: "form-control", placeholder: "ユーザー名(20文字以内)" %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "メールアドレス" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "パスワード(英数混合6文字以上)" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:"パスワード(確認用)" %>
+        </div>
+
+        <div class="form-group">
+          <span class="bg-success text-white p-1 rounded">任意</span>
+          <%= f.text_area :introduction, autofocus: true,class:"form-control", placeholder:"自己紹介(1000文字まで)", id: "introduce_text" , rows: 4 %>
+          <p><span id="counter">0</span>/1000文字</p>
+        </div>
+        
+
+        <div class="sign-up__submit-btn">
+          <%= f.submit "登録する", class: "btn btn-block text-white" %>
+        </div>
+      <% end %>
+
+      <div class="mt-3">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

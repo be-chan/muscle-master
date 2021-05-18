@@ -1,0 +1,50 @@
+<div class="user-edit-page">
+  <%= render "shared/header"%>
+
+  <div class="card" id="card-user-edit">
+    <%# また後ほど、画像の保存があるかないかで条件分岐 %>
+    <% unless @user.image.present? %>
+      <%= image_tag "/images/profile_default_img_128_2.png", class: "card-img-top", id: "profile-default-edit-img"%>
+    <% else %>
+      <%= image_tag @user.image, class: "card-img-top", id: "profile-img" %>
+    <% end %>
+    
+    <%# 終わり %>
+    <div class="card-body">
+      <%= form_with scope: resource, as: resource_name, url: registration_path(resource_name), class: "px-3", local: true, method: :patch do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        
+      <div class="input-group">
+        <%= f.file_field :image, id: "profile_image_upload"%>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :nickname, autofocus: true, class: "form-control", placeholder: "ユーザー名" %>
+      </div>
+          
+      <div class="form-group">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "メールアドレス" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "パスワード(英数混合6文字以上)" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:"パスワード(確認用)" %>
+      </div>
+
+      <div class="form-group">
+        <span class="bg-success text-white p-1 rounded">自己紹介</span>
+        <%= f.text_area :introduction, autofocus: true,class:"form-control", placeholder:"自己紹介(1000文字まで)", id: "introduce_text" , rows: 4 %>
+        <p><span id="counter"></span>/1000文字</p>
+      </div>
+        
+      <div class="sign-up__submit-btn">
+        <%= f.submit "保存する", class: "btn btn-block text-white" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+</div>
