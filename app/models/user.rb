@@ -7,8 +7,8 @@ class User < ApplicationRecord
   has_many :memos
 
   VALID_PASSWORD_REGEX = /(?=.*?[a-z])(?=.*?\d)[a-z\d]/i.freeze
-  validates :password, format: { with: VALID_PASSWORD_REGEX, message: "は半角英数字混合６文字以上で入力してください"}
-  validates :password_confirmation, format: { with: VALID_PASSWORD_REGEX }
+  validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'は半角英数字混合６文字以上で入力してください' }, on: :create
+  validates :password_confirmation, format: { with: VALID_PASSWORD_REGEX }, on: :create
 
   validates :nickname, presence: true, length: { maximum: 20 }
   validates :introduction, length: { maximum: 1000 }
