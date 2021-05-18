@@ -1,0 +1,40 @@
+.sign-up-page {
+  height: 100%;
+  background-color: #dddbdb;
+}
+
+#introduce_text {
+  resize: none;
+}
+
+#card-sign-up {
+  margin-top: 10vh;
+}   
+
+.btn-light {
+  color: #616161;
+}
+
+.sign-up__submit-btn {
+  background-color: #4689FF;
+  height: 38px;
+  transition: 0.3s all;
+  &:hover {
+    background-color: #343a40;
+  }
+}
+
+@media (max-width: 480px) {
+  .sign-up-page {
+    max-width: initial;
+  }
+  #card-sign-up {
+    margin-top: 5vh;
+  }
+  .card {
+    border: none;
+    &-header {
+      background-color: #fff;
+    }
+  }
+}
