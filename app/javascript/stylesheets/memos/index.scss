@@ -1,0 +1,43 @@
+.memo-page {
+  padding: 1.5rem;
+}
+
+.memo-title {
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 14px;
+  font-size: 28px;
+  border-bottom: 2px solid #343a40;
+  max-width: 480px;
+}
+
+.memo-text {
+  font-size: 12px;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.add-training {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  color: #343a40;
+  background-color: #176606;
+  border-radius: 50%;
+  padding: 10px;
+  transition: 0.3s;
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.search-btn-icon {
+  color: #343a40;
+}
+
+@media(max-width: 480px) {
+  .memo-page {
+    max-width: initial;
+  }
+}

@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   root to: 'top#index'
   
   resources :users, only: [:show] do
-    resources :memos, only: [:index] 
+    resources :memos, except: [:show]
   end
 end
