@@ -1,0 +1,51 @@
+<%= render "shared/header"%>
+<div class="memo-new-page-container">
+  <div class="memo-new-page">
+    <div class="memo-new-title">トレーニング内容の追加</div>
+    <%= form_with model: [@user, @memo], url: user_memos_path,  local: true do |f| %>
+      <div class="form-group">
+        <label><span class="bg-success text-white p-1 rounded">日付</span></label>
+        <% if @memo.errors.include?(:start_time) %>
+          <span class="memo-error-message">
+            <%= @memo.errors.full_messages_for(:start_time).first %>
+          </span>
+        <% end %>
+        <%= f.date_select :start_time, class:"form-control" %>
+      </div>
+      <div class="form-group">
+        <label><span class="bg-success text-white p-1 rounded">種目</span></label>
+        <% if @memo.errors.include?(:training_content) %>
+          <span class="memo-error-message">
+            <%= @memo.errors.full_messages_for(:training_content).first %>
+          </span>
+        <% end %>
+        <%= f.text_field :training_content, placeholder: "例) ベンチプレス(20文字以内)", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <label><span class="bg-success text-white p-1 rounded">重量</span>(kg)</label>
+        <% if @memo.errors.include?(:weight) %>
+          <span class="memo-error-message">
+            <%= @memo.errors.full_messages_for(:weight).first %>
+          </span>
+        <% end %>
+        <%= f.text_field :weight, placeholder: "1~999(半角数字のみ)", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <label><span class="bg-success text-white p-1 rounded">回数</span>(reps)</label>
+        <% if @memo.errors.include?(:training_time) %>
+          <span class="memo-error-message">
+            <%= @memo.errors.full_messages_for(:training_time).first %>
+          </span>
+        <% end %>
+        <%= f.text_field :training_time, placeholder: "1~100(半角数字のみ)", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <label><span class="bg-success text-white p-1 rounded">セット数</span>(sets) ※選択してください</label>
+        <%= f.collection_select(:set_count_id, SetCount.all, :id, :name, {},{class: "form-control", id: "traning-set-count"})%>
+      </div>
+      <div class="form-group"> 
+        <%= f.submit "記録する" ,class:"btn btn-primary btn-block" %>
+      </div>
+    <% end %>
+  </div>
+</div>

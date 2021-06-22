@@ -1,0 +1,23 @@
+.memo-new-page-container {
+  background-color: #dddbdb;
+  height: 100%;
+  padding-top: 10vh;
+}
+
+.memo-new-title {
+  text-align: center;
+  font-size: 28px;
+  border-bottom: 2px solid #343a40;
+  margin-bottom: 14px;
+}
+
+.memo-new-page {
+  max-width: 480px;
+  background-color: #fff;
+  padding: 1.25rem;
+  margin: 0 auto;
+}
+
+.memo-error-message {
+  color: red;
+}
