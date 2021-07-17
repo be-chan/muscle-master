@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Memo, type: :model do
-  before do 
+  before do
     @memo = FactoryBot.build(:memo)
   end
   describe 'メモ新規登録' do
@@ -72,7 +72,6 @@ RSpec.describe Memo, type: :model do
         expect(@memo.errors.full_messages).to include('重量は半角数字で1~999以内で入力してください')
       end
 
-      
       it '回数が空の場合は登録が出来ない' do
         @memo.training_time = ''
         @memo.valid?
@@ -101,15 +100,13 @@ RSpec.describe Memo, type: :model do
         @memo.training_time = 'あああ'
         @memo.valid?
         expect(@memo.errors.full_messages).to include('回数は半角数字で1~100以内で入力してください')
-      end 
+      end
 
       it '回数が全角英字の場合は登録が出来ない' do
         @memo.training_time = 'aaa'
         @memo.valid?
         expect(@memo.errors.full_messages).to include('回数は半角数字で1~100以内で入力してください')
-      end 
-      
+      end
     end
   end
-  
 end
