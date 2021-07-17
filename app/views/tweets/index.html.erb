@@ -1,0 +1,54 @@
+<%= render "shared/header"%>
+<div class="tweet-index-page d-flex justify-content-center align-items-center">
+  <div class="tweets">
+    <div class="tweets-header">
+      <p>つぶやき投稿一覧</p>
+    </div>
+    <div class="tweets-body">
+      <ul>
+        <% @tweets.each do |tweet| %>
+          <li class="tweet d-flex p-2">
+            <div class="tweet-user">
+              <%= link_to user_path(tweet.user), class: "no-text-decoration" do %>
+                <div class="tweet-user-images">
+                  <% unless tweet.user.image.present? %>
+                    <%= image_tag "profile_default_img_128.png", class: "tweet-default-user-image" %>
+                  <% else %>
+                    <%= image_tag tweet.user.image, class: "tweet-user-image" %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <div class="tweet-text-container">
+              <%= link_to user_path(tweet.user), class: "no-text-decoration" do %>
+                <div class="tweet-user-name">
+                  <%= tweet.user.nickname %>
+                </div>
+              <% end %>
+              <div class="tweet-text-box">
+                <p class="tweet-text p-1">
+                  <%= tweet.body %>
+                </p>
+              </div>  
+              <div class="tweet-text-box d-inline-block">
+                <p class="tweet-text p-1 bg-info text-white rounded-pill">
+                  <%= tweet.memo.training_content %>/<%= tweet.memo.weight%>kg/<%= tweet.memo.training_time %>回/<%= tweet.memo.set_count.name %>セット
+                </p>
+              </div>
+              <div class="row parts">
+                <%= link_to "", "#", class: "love" %>
+                <%= link_to "", tweet_path(tweet.id), class: "comment" %>
+              </div>
+            </div>
+            <div class="tweet-time ml-auto d-flex align-items-end">
+              <%= time_ago_in_words(tweet.created_at) + "前" %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+      <div class="tweets-pagenate">
+        <%= paginate @tweets %>
+      </div>
+    </div>
+  </div>
+</div>
