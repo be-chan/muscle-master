@@ -14,7 +14,7 @@
         <div class="form-group">
           <% if @tweet.errors.include?(:body) %>
             <span class="tweet-error-message">
-              <% @tweet.errors.full_messages_for(:body).first %>
+              <%= @tweet.errors.full_messages_for(:body).first %>
             </span>
           <% end %>
           <%= f.text_area :body, placeholder: "150文字以内で入力してください", class: "form-control", id: "introduce_text" %>
