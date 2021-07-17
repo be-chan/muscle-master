@@ -13,9 +13,6 @@
 
 .memo-text {
   font-size: 12px;
-  &:hover {
-    text-decoration: none;
-  }
 }
 
 .add-training {
@@ -39,5 +36,11 @@
 @media(max-width: 480px) {
   .memo-page {
     max-width: initial;
+    padding: 0;
+  }
+
+  .memo-title {
+    font-size: 20px;
+    border-bottom: none;
   }
 }

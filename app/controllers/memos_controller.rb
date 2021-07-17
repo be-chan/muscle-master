@@ -18,7 +18,7 @@ class MemosController < ApplicationController
   def create
     @memo = Memo.new(memos_params)
     if @memo.save
-      redirect_to user_memos_path(current_user.id)
+      redirect_to memos_path
       flash[:notice] = "トレーニング内容を新しくメモしました"
     else
       render :new
@@ -31,7 +31,7 @@ class MemosController < ApplicationController
 
   def update
     if @memo.update(memos_params)
-      redirect_to user_memos_path(current_user.id)
+      redirect_to memos_path
       flash[:notice] = "トレーニング内容を更新しました"
     else
       render :edit
@@ -40,12 +40,12 @@ class MemosController < ApplicationController
 
   def destroy
     @memo.destroy
-    redirect_to user_memos_path(current_user.id)
+    redirect_to memos_path
   end
 
   private
     def user_memos_find_params 
-      @user = User.find(params[:user_id])
+      @user = User.find(current_user.id)
     end
 
     def memos_find_params
@@ -57,7 +57,7 @@ class MemosController < ApplicationController
     end
 
     def correct_user
-      redirect_to user_memos_path(current_user.id) unless current_user.id == @memo.user.id
+      redirect_to memos_path unless current_user.id == @memo.user.id
     end
 
     def search_memos

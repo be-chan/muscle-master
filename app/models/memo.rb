@@ -1,5 +1,6 @@
 class Memo < ApplicationRecord
   belongs_to :user
+  has_many :tweets
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :set_count

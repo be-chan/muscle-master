@@ -26,9 +26,9 @@
     <div class="profile-introduction mt-4">
       <%= @user.introduction %>
     </div>
-
-    <%= link_to "情報を編集する", edit_user_registration_path, class: "user-edit-btn p-3 text-white" %>
-
+    <% if @user.id == current_user.id %>
+      <%= link_to "情報を編集する", edit_user_registration_path, class: "user-edit-btn p-3 text-white" %>
+    <% end %>
   </div>
   
 </div>

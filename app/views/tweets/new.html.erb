@@ -1,0 +1,28 @@
+<%= render "shared/header"%>
+<div class="tweet-new-page-container">
+  <div class="tweet-new-page">
+    <div class="tweet-new-title">ツイート投稿</div>
+    <div class="tweet-new-memo-content p-2 d-flex justify-content-center">
+      <div class="bg-info text-center text-white p-1 rounded-pill">
+        <%= @memo.training_content %>
+        <%= @memo.weight %>kg
+        <%= @memo.training_time %>回
+        <%= @memo.set_count.name %>セット
+      </div>
+    </div>
+      <%= form_with model: @tweet, url: memo_tweets_path(@memo.id),method: :post, local: true do |f| %>
+        <div class="form-group">
+          <% if @tweet.errors.include?(:body) %>
+            <span class="tweet-error-message">
+              <% @tweet.errors.full_messages_for(:body).first %>
+            </span>
+          <% end %>
+          <%= f.text_area :body, placeholder: "150文字以内で入力してください", class: "form-control", id: "introduce_text" %>
+          <p><span id="counter">0</span>/150文字</p>
+        </div>
+        <div class="form-group">
+          <%= f.submit "投稿する", class: "btn btn-primary btn-block" %>
+        </div>
+      <% end %>
+  </div>
+</div>
