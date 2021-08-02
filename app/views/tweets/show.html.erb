@@ -1,6 +1,65 @@
 <%= render "shared/header" %>
-<div class="tweet-show-page">
-  <div class="tweet-show">
-    <p>ここはツイート詳細ページです</p>
+<div class="tweet-show-page d-flex align-items-center justify-content-center flex-column">
+  <div class="tweet-show-container pt-2 pr-2 pl-2 pb-0">
+    <div class="tweet-show-time p-2 d-flex justify-content-between">
+      <div class="tweet-show-time-date">
+        <%= @tweet.created_at.strftime('%Y/%m/%d') %>
+      </div>
+      <div class="tweet-show-time-ago">
+        <%= time_ago_in_words(@tweet.created_at) + "前" %>
+      </div>
+    </div>
+    <div class="tweet-show-contents d-flex align-items-center flex-column">
+      <div class="tweet-show-content p-2">
+        <% unless @tweet.memo.user.image.present? %>
+          <%= image_tag "profile_default_img_128.png", class: "tweet-show-default-user-image" %>
+        <% else %>
+          <%= image_tag @tweet.memo.user.image, class: "tweet-show-user-image" %>
+        <% end %>
+      </div>
+      <div class="tweet-show-content p-2">
+        <%= @tweet.memo.user.nickname %>
+      </div>
+      <div class="tweet-show-content p-2 bg-info text-white rounded-pill">
+        <%= @tweet.memo.training_content %>
+        <%= @tweet.memo.weight %>kg
+        <%= @tweet.memo.training_time %>回
+        <%= @tweet.memo.set_count.name %>セット
+      </div>
+      <div class="tweet-show-content p-2">
+        <%= @tweet.body %>
+      </div>
+      <div class="tweet-show-like-comment-count p-2 d-flex jutify-content-start">
+        <p class="like-count p-0 mt-2 mr-2" >いいね数<%= render "like_count", { likes: @tweet.likes } %>件</p>  
+        <p class="comment-count p-0 mt-2">コメント数<%= render "comment_count", { comments: @tweet.comments } %>件</p>  
+        <div class="comment-form-container ml-auto">
+          <div id="comment-form-tweet-<%= @tweet.id.to_s %>">
+            <%= form_with model: [@tweet, Comment.new], local: true do |f| %> 
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.hidden_field :tweet_id, value: @tweet.id %>
+              <%= f.text_field :body, class: "form-control rounded-pill", placeholder: "コメントを追加...", autocomplete: :off%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>
+<div class="comment-list-container d-flex justify-content-center">
+  <div class="comments-show">
+    <div class="comments-show-header">
+      <p>コメント一覧</p>
+    </div>
+      <div id="comment-tweet-<%= @tweet.id.to_s %>">
+        <ul class="comment-show-list">
+          <%= render 'comment_list', { tweet: @tweet }%>
+        </ul>
+      </div>
+      <div class="more-btn">
+       <% if @tweet.comments.length >= 4 %>
+        <button class="more btn-info">もっと見る</button>
+        <button class="reload btn-info btn-is-hidden">クリア</button>
+       <% end %>
+      </div>
   </div>
 </div>

@@ -2,3 +2,129 @@
   height: 100%;
   background-color: #dddbdb;
 }
+
+.tweet-show {
+  &-container {
+    max-width: 576px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 5px;
+  }
+  &-time {
+    width: 100%;
+    &-ago {
+      color: #999;
+    }
+  }
+  &-contents {
+    width: 100%;
+  }
+  &-default-user-image {
+    height: 240px;
+    width: 240px;
+    object-fit: cover;
+    border-radius: 50%;
+    background-size: contain;
+  }
+  &-user-image {
+    height: 240px;
+    width: 240px;
+    object-fit: cover;
+    border-radius: 50%;
+    background-size: contain;
+  }
+  &-like-comment-count {
+    width: 100%;
+  }
+}
+
+.comment-list-container {
+  background-color: #dddbdb;
+  padding-bottom: 1.5rem;
+}
+
+.comments-show {
+  max-width: 768px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  padding-bottom: 16px;
+  &-header p{
+    text-align: center;
+    margin: 16px 0;
+    font-size: 18px;
+  }
+}
+
+.comment-show-list-element {
+  padding: 0.5rem;
+  transition: all 0.5s ease 0s;
+  border-bottom: 1px dotted #000;
+  &:first-child {
+    border-top: 1px dotted #000;
+  }
+}
+
+.comment-date {
+  white-space: nowrap;
+}
+
+.comment-show-list li.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.more-btn {
+  text-align: center;
+}
+
+.fadeout {
+  opacity: 0;
+}
+
+.btn-is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+@media(max-width: 576px) {
+  $mobile-font-size: 0.5rem;
+  .tweet-show {
+    &-default-user-image {
+      height: 180px;
+      width: 180px;
+    }
+    &-user-image {
+      height: 180px;
+      width: 180px;
+    }
+    &-content {
+      font-size: $mobile-font-size;
+    }
+  }
+
+  .tweet-user-name {
+    font-size: $mobile-font-size;
+  }
+
+  .like-count {
+    font-size: $mobile-font-size;
+  }
+
+  .comment-count {
+    font-size: $mobile-font-size;
+  }
+
+  .comment-date {
+    font-size: $mobile-font-size;
+  }
+}

@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_one_attached :image
   has_many :memos
   has_many :tweets
+  has_many :likes
+  has_many :comments
 
   VALID_PASSWORD_REGEX = /(?=.*?[a-z])(?=.*?\d)[a-z\d]/i.freeze
   validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'は半角英数字混合６文字以上で入力してください' }, on: :create
