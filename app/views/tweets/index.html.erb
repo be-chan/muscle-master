@@ -36,8 +36,18 @@
                 </p>
               </div>
               <div class="row parts">
-                <%= link_to "", "#", class: "love" %>
+                <div id="like-icon-tweet-<%= tweet.id.to_s %>">
+                  <% if tweet.liked_by(current_user).present? %>
+                    <%= link_to "", tweet_like_path(tweet.id, tweet.liked_by(current_user)), method: :DELETE, remote: true, class: "loved hide-text" %>
+                  <% else %>
+                    <%= link_to "", tweet_likes_path(tweet), method: :POST, remote: true, class: "love hide-text" %>
+                  <% end %>
+                </div>
+                <div id="like-text-tweet-<%= tweet.id.to_s %>">
+                  <%= render "like_count", { likes: tweet.likes } %>
+                </div>
                 <%= link_to "", tweet_path(tweet.id), class: "comment" %>
+                <%= render "comment_count", { comments: tweet.comments }%>
               </div>
             </div>
             <div class="tweet-time ml-auto d-flex align-items-end">

@@ -17,6 +17,8 @@ ja:
         set_count: セット数
       tweet:
         body: 投稿フォーム
+      comment:
+        body: コメント
   views:
     pagination:
       first: "&laquo; 最初"

@@ -63,6 +63,21 @@
   background-size: 18px !important;
 }
 
+.loved {
+  background-image: url("~love_red");
+  background-repeat: no-repeat;
+  height: 18px;
+  width: 18px;
+  background-size: 18px !important;
+}
+
+.hide-text {
+  display: block;
+  overflow: hidden;
+  text-indent: 110%;
+  white-space: nowrap;
+}
+
 .comment {
   margin-left: 8px;
   background-image: url("~comment");

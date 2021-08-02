@@ -1,0 +1,4 @@
+$('#like-icon-tweet-<%= @tweet.id.to_s %>').
+html('<%= link_to "", tweet_like_path(@tweet.id, @like),method: :DELETE, remote: true, class: "loved hide-text" %>');
+$('#like-text-tweet-<%= @tweet.id.to_s %>').
+ html('<%= j render "tweets/like_count", { likes: @tweet.likes } %>');

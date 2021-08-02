@@ -3,11 +3,14 @@ Rails.application.routes.draw do
   sessions: 'users/sessions' }
   root to: 'top#index'
   
-  resources :users, only: [:show] do
-    # resources :memos, except: [:show] 
-  end
+  resources :users, only: [:show] 
+
   resources :memos, except: [:show] do
     resources :tweets, only: [:new, :create]
   end
-  resources :tweets, only: [:index, :show]
+
+  resources :tweets, only: [:index, :show] do
+    resources :likes, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
+  end
 end
