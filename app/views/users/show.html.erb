@@ -16,18 +16,16 @@
       <%= @user.nickname %>
     </div>
 
-    <%# フォロー機能を実装してから、プログラムを加える %>
-    <div class="profile-follow mt-4">
-      <p class="profile-show-follow">50フォロー</p>
-      <p class="profile-show-follower">10000フォロワー</p>
-    </div>
+    <%# フォローのカウント %>
+    <%= render "show_follow_count" %>
     <%# 終わり %>
 
     <div class="profile-introduction mt-4">
       <%= @user.introduction %>
     </div>
+    <%= render "follow_form" %>
     <% if @user.id == current_user.id %>
-      <%= link_to "情報を編集する", edit_user_registration_path, class: "user-edit-btn p-3 text-white" %>
+      <%= link_to "情報を編集する", edit_user_registration_path, class: "user-edit-btn btn btn-outline-primary" %>
     <% end %>
   </div>
   

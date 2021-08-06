@@ -1,0 +1,31 @@
+<%= render "shared/header" %>
+<div class="follow-page d-flex jutify-content-center">
+  <div class="follows">
+    <div class="follows-header">
+      <p><%= @user.nickname %>のフォロワ一覧(<%= @users.length %>人)</p>
+    </div>
+    <div class="follows-body">
+      <ul>
+        <% @users.each do |user| %>
+          <li class="follow d-flex">
+          <%= link_to user_path(user) , class: "no-text-decoration" do %>
+            <% unless user.image.present? %>
+              <%= image_tag "profile_default_img_128.png", class: "tweet-default-user-image" %>
+            <% else %>
+              <%= image_tag user.image, class: "tweet-user-image" %>
+            <% end %>
+          <% end %>
+          <div class="follow-text-container p-2 d-flex flex-column">
+            <span>
+              <%= link_to user_path(user), class: "no-text-decoration" do %>
+                <%= user.nickname %>
+              <% end %>
+            </span>
+            <span class="follow-text"><%= user.introduction %></span>
+          </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
