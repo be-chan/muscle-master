@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
 
   resources :memos, except: [:show] do
-    resources :tweets, only: [:new, :create]
+    resources :tweets, only: [:new, :create, :destroy]
   end
 
   resources :tweets, only: [:index, :show] do
