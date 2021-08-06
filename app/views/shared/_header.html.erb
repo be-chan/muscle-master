@@ -1,32 +1,35 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <%= link_to "Muscle Master", "#", class: "navbar-brand"%>
+    <% if user_signed_in? %>
+      <%= link_to "Muscle Master", memos_path, class: "navbar-brand"%>
+    <% else %>
+      <%= link_to "Muscle Master", root_path, class: "navbar-brand"%>
+    <% end %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <%= link_to "SNS", tweets_path, class: "nav-link"%>
-        </li>
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%#= link_to "Memo", user_memos_path(current_user.id), class: "nav-link"%>
-            <%= link_to "Memo", memos_path, class: "nav-link"%>
+            <%= link_to "トレシェア", tweets_path, class: "nav-link"%>
           </li>
           <li class="nav-item">
-            <%= link_to "Mypage", user_path(current_user.id), class: "nav-link"%>
+            <%= link_to "メモ", memos_path, class: "nav-link"%>
           </li>
           <li class="nav-item">
-            <%= link_to "Logout", destroy_user_session_path,method: :delete, class: "nav-link"%>
+            <%= link_to "マイページ", user_path(current_user.id), class: "nav-link"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ログアウト", destroy_user_session_path,method: :delete, class: "nav-link"%>
           </li>
           <% else %>
           <li class="nav-item">
-            <%= link_to "Sign up", new_user_registration_path, class: "nav-link"%>
+            <%= link_to "サインアップ", new_user_registration_path, class: "nav-link"%>
           </li>
           <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link"%>
+            <%= link_to "ログイン", new_user_session_path, class: "nav-link"%>
           </li>
         <% end %>
       </ul>

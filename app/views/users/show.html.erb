@@ -26,6 +26,7 @@
     <%= render "follow_form" %>
     <% if @user.id == current_user.id %>
       <%= link_to "情報を編集する", edit_user_registration_path, class: "user-edit-btn btn btn-outline-primary" %>
+      <%= link_to "退会する", user_registration_path, method: :delete, data: { confirm: "本当に退会しますか？" } , class: "user-edit-btn btn btn-outline-danger" %>
     <% end %>
   </div>
   
