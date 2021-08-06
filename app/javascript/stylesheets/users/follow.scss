@@ -1,0 +1,33 @@
+.follow-page {
+  height: 100%;
+}
+
+.follows {
+  width: 60%;
+  margin: 0 auto;
+  padding: 2%;
+}
+
+.follows-header {
+  text-align: center;
+  border-bottom: 2px solid #000;
+}
+
+.follow {
+  width: 90%;
+  border-bottom: 1px dotted #000;
+  margin: 0 auto;
+  padding: 10px;
+  &-text {
+    font-size: 14px;
+  }
+}
+@media(max-width: 576px) {
+  .follows {
+    width: 100%;
+  }
+
+  .follow-text {
+    font-size: 12px;
+  }
+}
