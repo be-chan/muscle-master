@@ -21,5 +21,8 @@
 
   .has-events {
     background: #98fb98;
+    .memo_search:nth-child(n + 2) {
+      display:none;
+    }
   }
 }

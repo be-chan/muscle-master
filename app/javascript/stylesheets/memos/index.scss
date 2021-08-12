@@ -12,7 +12,7 @@
 }
 
 .memo-text {
-  font-size: 12px;
+  font-size: 1rem;
 }
 
 .add-training {
@@ -33,14 +33,39 @@
   color: #343a40;
 }
 
-@media(max-width: 480px) {
+.memo-table {
+  .memo-th,
+  .memo-td {
+  width: auto !important;
+  }
+}
+
+@media(max-width: 576px) {
   .memo-page {
     max-width: initial;
     padding: 0;
   }
 
+  .memo-text {
+    font-size: 0.5rem
+  }
+
   .memo-title {
     font-size: 20px;
     border-bottom: none;
+  } 
+
+  .memo-td {
+    border-top: none !important;
+  }
+
+  .memo-thead {
+    .memo-tr {
+    border-bottom: 2px solid gray;
+    }
+
+    .memo-th {
+    border-bottom: none;
+    }
   }
 }
