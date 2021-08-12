@@ -17,12 +17,13 @@ class CommentsController < ApplicationController
     if @comment.destroy
       redirect_to tweet_path(@tweet.id)
     else
-      flash[:alert] = "コメントの削除に失敗しました"
+      flash[:alert] = 'コメントの削除に失敗しました'
     end
   end
 
   private
-    def comment_params
-      params.required(:comment).permit(:user_id, :tweet_id, :body)
-    end
+
+  def comment_params
+    params.required(:comment).permit(:user_id, :tweet_id, :body)
+  end
 end
