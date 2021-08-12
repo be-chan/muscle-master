@@ -1,22 +1,19 @@
 class LikesController < ApplicationController
   before_action :authenticate_user!
-  def create 
+  def create
     @like = current_user.likes.build(like_params)
     @tweet = @like.tweet
-    if @like.save
-      respond_to :js
-    end
+    respond_to :js if @like.save
   end
 
   def destroy
     @like = Like.find(params[:id])
     @tweet = @like.tweet
-    if @like.destroy
-      respond_to :js
-    end
+    respond_to :js if @like.destroy
   end
 
-  private 
+  private
+
   def like_params
     params.permit(:tweet_id)
   end

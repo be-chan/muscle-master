@@ -22,6 +22,5 @@ RSpec.describe Comment, type: :model do
         expect(@comment.errors.full_messages).to include('コメントは150文字以内で入力してください')
       end
     end
-    
   end
 end

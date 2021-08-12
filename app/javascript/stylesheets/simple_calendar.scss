@@ -1,13 +1,17 @@
 .simple-calendar {
   .day {}
 
-  .wday-0 {}
+  .wday-0 {
+    color: #FD3378;
+  }
   .wday-1 {}
   .wday-2 {}
   .wday-3 {}
   .wday-4 {}
   .wday-5 {}
-  .wday-6 {}
+  .wday-6 {
+    color: #4689FF;
+  }
 
   .today {}
   .past {}
