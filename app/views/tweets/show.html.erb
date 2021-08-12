@@ -34,7 +34,7 @@
         <p class="comment-count p-0 mt-2">コメント数<%= render "comment_count", { comments: @tweet.comments } %>件</p>  
         <div class="comment-form-container ml-auto">
           <div id="comment-form-tweet-<%= @tweet.id.to_s %>">
-            <%= form_with model: [@tweet, Comment.new], local: true do |f| %> 
+            <%= form_with model: [@tweet, Comment.new], local: true do |f| %>
               <%= f.hidden_field :user_id, value: current_user.id %>
               <%= f.hidden_field :tweet_id, value: @tweet.id %>
               <%= f.text_field :body, class: "form-control rounded-pill", placeholder: "コメントを追加...", autocomplete: :off%>
