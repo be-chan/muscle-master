@@ -1,13 +1,14 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!
-  before_action :tweet_memo_params, only: [:new, :create]
+  before_action :tweet_memo_params, only: [:new, :create, :destroy]
+  before_action :tweet_find_params, only: [:show, :destroy]
 
   def index
     @tweets = Tweet.includes(:user).order('created_at DESC').page(params[:page]).per(3)
   end
 
   def show
-    @tweet = Tweet.find(params[:id])
+    
   end
 
   def new
@@ -23,6 +24,11 @@ class TweetsController < ApplicationController
     end
   end
 
+  def destroy
+    @tweet.destroy
+    redirect_to tweets_path
+  end
+
   private
 
   def tweet_params
@@ -31,5 +37,9 @@ class TweetsController < ApplicationController
 
   def tweet_memo_params
     @memo = Memo.find(params[:memo_id])
+  end
+
+  def tweet_find_params
+    @tweet = Tweet.find(params[:id])
   end
 end

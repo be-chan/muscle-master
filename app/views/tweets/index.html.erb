@@ -50,8 +50,17 @@
                 <%= render "comment_count", { comments: tweet.comments }%>
               </div>
             </div>
-            <div class="tweet-time ml-auto d-flex align-items-end">
-              <%= time_ago_in_words(tweet.created_at) + "前" %>
+            <div class="tweet-time ml-auto d-flex flex-column">
+              <% if current_user.id == tweet.user_id %>
+                <span class="tweet-delete-icon d-flex justify-content-center">
+                  <%= link_to memo_tweet_path(tweet.memo_id, tweet.id) ,method: :delete, data: { confirm: "本当に削除しマッスルか？" } do %>
+                    <i class="far fa-trash-alt"></i>
+                  <% end %>
+                </span>
+              <% end %>
+              <span class="tweet-time-ago mt-auto">
+                <%= time_ago_in_words(tweet.created_at) + "前" %>
+              </span>
             </div>
           </li>
         <% end %>
@@ -62,3 +71,4 @@
     </div>
   </div>
 </div>
+<%= render "shared/footer"%>
