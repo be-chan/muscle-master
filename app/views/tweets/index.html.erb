@@ -31,7 +31,7 @@
                 </p>
               </div>  
               <div class="tweet-text-box d-inline-block">
-                <p class="tweet-text p-1 bg-info text-white rounded-pill">
+                <p class="tweet-text tweet-training-content p-1 bg-info text-white rounded-pill">
                   <%= tweet.memo.training_content %>/<%= tweet.memo.weight%>kg/<%= tweet.memo.training_time %>回/<%= tweet.memo.set_count.name %>セット
                 </p>
               </div>
@@ -52,7 +52,7 @@
             </div>
             <div class="tweet-time ml-auto d-flex flex-column">
               <% if current_user.id == tweet.user_id %>
-                <span class="tweet-delete-icon d-flex justify-content-center">
+                <span class="tweet-delete-icon d-flex justify-content-end">
                   <%= link_to memo_tweet_path(tweet.memo_id, tweet.id) ,method: :delete, data: { confirm: "本当に削除しマッスルか？" } do %>
                     <i class="far fa-trash-alt"></i>
                   <% end %>

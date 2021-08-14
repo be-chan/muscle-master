@@ -1,4 +1,4 @@
-.memo-new-page-container {
+.memo-new-page {
   background-color: #dddbdb;
   height: 100%;
   padding-top: 10vh;
@@ -11,8 +11,8 @@
   margin-bottom: 14px;
 }
 
-.memo-new-page {
-  max-width: 480px;
+.memo-new-page-container {
+  max-width: 576px;
   background-color: #fff;
   padding: 1.25rem;
   margin: 0 auto;
@@ -20,4 +20,10 @@
 
 .memo-error-message {
   color: red;
+}
+
+@media(max-width: 576px) {
+  .memo-new-title {
+    font-size: 18px;
+  }
 }
