@@ -3,25 +3,25 @@
   height: 100%;
 }
 
+#card-user-edit {
+  width: 100%;
+}
+
+#image-list {
+  text-align: center;
+  padding: 20px 20px 0 20px;
+}
+
 .card-img-top {
   height: 128px;
   width: 128px;
   border-radius: 50%;
-  margin: 20px auto 0;
-}
-
-#card-user-edit {
-  margin-top: 10vh;
-  margin-bottom: 10vh;
+  object-fit: cover;
+  background-size: contain;
 }
 
 @media (max-width: 480px) {
   .user-edit-page {
     max-width: initial;
   }
-  #card-user-edit {
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-  }
-  
 }

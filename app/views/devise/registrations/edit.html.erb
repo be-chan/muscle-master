@@ -1,12 +1,13 @@
-<div class="user-edit-page">
-  <%= render "shared/header"%>
+<%= render "shared/header"%>
+<div class="user-edit-page d-flex justify-content-center align-items-center">
   <div class="card" id="card-user-edit">
-    <% unless @user.image.present? %>
-      <%= image_tag "/images/profile_default_img_128_2.png", class: "card-img-top", id: "profile-default-edit-img"%>
-    <% else %>
-      <%= image_tag @user.image, class: "card-img-top", id: "profile-img" %>
-    <% end %>
-    
+    <div id="image-list">
+      <% unless @user.image.present? %>
+        <%= image_tag "/images/profile_default_img_128_2.png", class: "card-img-top", id: "profile-default-edit-img"%>
+      <% else %>
+        <%= image_tag @user.image, class: "card-img-top", id: "profile-edit-img" %>
+      <% end %>
+    </div>
     <div class="card-body">
       <%= form_with scope: resource, as: resource_name, url: registration_path(resource_name), class: "px-3", local: true, method: :patch do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
@@ -43,5 +44,5 @@
     </div>
   </div>
   <% end %>
-
 </div>
+<%= render "shared/footer" %>

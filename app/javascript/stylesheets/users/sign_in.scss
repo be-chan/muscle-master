@@ -5,8 +5,7 @@
 
 .card {
   max-width: 480px;
-  margin: 0 auto;
-  margin-top: 25vh;
+  width: 100%;
 }
 
 .sign-in__submit-btn {
@@ -24,7 +23,7 @@
   }
   .card {
     border: none;
-    margin-top: 5vh;
+    // margin-top: 5vh;
     &-header {
       background-color: #fff;
     }
