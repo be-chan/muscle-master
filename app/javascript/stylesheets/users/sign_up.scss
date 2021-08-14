@@ -7,10 +7,6 @@
   resize: none;
 }
 
-#card-sign-up {
-  margin-top: 10vh;
-}   
-
 .btn-light {
   color: #616161;
 }
@@ -24,12 +20,9 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
   .sign-up-page {
     max-width: initial;
-  }
-  #card-sign-up {
-    margin-top: 5vh;
   }
   .card {
     border: none;

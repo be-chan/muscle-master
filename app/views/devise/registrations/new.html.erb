@@ -1,11 +1,9 @@
-
-<div class="sign-up-page">
-  <%= render "shared/header"%>
+<%= render "shared/header"%>
+<div class="sign-up-page d-flex justify-content-center align-items-center">
   <div class="card" id="card-sign-up">
     <div class="card-header">
       アカウントを作成する
     </div>
-
     <div class="card-body">
       <%= form_with scope: resource, as: resource_name, url: registration_path(resource_name), local: true do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
@@ -44,6 +42,7 @@
     </div>
   </div>
 </div>
+<%= render "shared/footer" %>
 
 
 
