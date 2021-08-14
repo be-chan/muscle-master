@@ -1,34 +1,72 @@
 <%= render "shared/header"%>
 <%= render "shared/flash_message" %>
-<div class="user-show-page pt-4">
-  <div class="profile">
+<div class="user-show-page d-flex justify-content-center align-items-center">
+  <div class="profile text-center p-4">
     <div class="profile-title">プロフィール</div>
 
-    <%# またユーザー情報で画像があるかどうかで条件分岐 %>
     <% unless @user.image.present? %>
       <div class="profile-default-img mt-4"></div>
     <% else %>
       <%= image_tag @user.image, class: "profile-img mt-4" %>
     <% end %>
-    <%# 終わり %>
     
     <div class="profile-name mt-4">
       <%= @user.nickname %>
     </div>
 
-    <%# フォローのカウント %>
     <%= render "show_follow_count" %>
-    <%# 終わり %>
 
     <div class="profile-introduction mt-4">
       <%= @user.introduction %>
     </div>
     <%= render "follow_form" %>
     <% if @user.id == current_user.id %>
-      <%= link_to "情報を編集する", edit_user_registration_path, class: "user-edit-btn btn btn-outline-primary" %>
-      <%= link_to "退会する", user_registration_path, method: :delete, data: { confirm: "本当に退会しますか？" } , class: "user-edit-btn btn btn-outline-danger" %>
+      <div class="profile-edit-btn d-flex flex-column justify-content-center align-items-center">
+        <%= link_to "情報を編集する", edit_user_registration_path, class: "user-edit-btn btn btn-outline-primary" %>
+        <%= link_to "退会する", user_registration_path, method: :delete, data: { confirm: "本当に退会しますか？" } , class: "user-edit-btn btn btn-outline-danger" %>
+      </div>
     <% end %>
   </div>
   
+</div>
+<div class="user-show-tweet-list-container d-flex justify-content-center">
+  <div class="user-show-tweets">
+    <div class="user-show-tweets-header">
+      <p><%= @user.nickname %>のつぶやき</p>
+    </div>
+    <div class="user-show-tweets-body">
+    <ul>
+      <% @user.tweets.each do |tweet| %>
+        <li class="user-show-tweet p-2 d-flex">
+            <div class="user-show-tweet-text-container">
+              <div class="user-show-tweet-text p-1">
+                <%= tweet.body %>
+              </div>
+              <div class="user-show-tweet-text user-show-training-content p-1 bg-info text-white rounded-pill d-inline-block">
+                <%= tweet.memo.training_content %>/<%= tweet.memo.weight %>kg/<%= tweet.memo.training_time %>回/<%= tweet.memo.set_count.name %>セット
+              </div>
+              <div class="user-show-tweet-like-comment-count pt-2">
+                いいね数<%= render "tweets/like_count", { likes: tweet.likes } %>件
+                コメント数<%= render "tweets/comment_count", {comments: tweet.comments } %>件
+              </div>
+            </div>
+            <div class="user-show-tweet-time ml-auto d-flex flex-column">
+              <span class="user-show-tweet-delete-icon d-flex justify-content-end">
+                <% if current_user.id == tweet.user.id %>
+                  <%= link_to memo_tweet_path(tweet.memo_id, tweet.id), method: :delete, data: { confirm: "本当に削除しマッスルか？"} do %>
+                  <i class="far fa-trash-alt"></i>
+                  <% end %>
+                <% end %>
+              </span>
+              <span class="user-show-tweet-time-ago mt-auto">
+                <%= time_ago_in_words(tweet.created_at) + "前" %>
+              </span>
+            </div>
+        </li>
+      <% end %>
+    </ul>
+    </div>
+  </div>
+
 </div>
 <%= render "shared/footer" %>

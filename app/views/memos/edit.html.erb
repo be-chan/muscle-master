@@ -1,6 +1,6 @@
 <%= render "shared/header"%>
-<div class="memo-new-page-container">
-  <div class="memo-new-page">
+<div class="memo-new-page">
+  <div class="memo-new-page-container">
     <div class="memo-new-title">トレーニング内容の編集</div>
     <%= form_with model: [@user, @memo], url: memo_path, local: true do |f| %>
       <div class="form-group">
