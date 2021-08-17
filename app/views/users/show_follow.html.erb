@@ -1,4 +1,10 @@
 <%= render "shared/header" %>
+<% if @user.id == current_user.id %>
+  <% breadcrumb :mypage_following %>
+<% else %>
+  <% breadcrumb :user_page_following, @user %>
+<% end %>
+<%= render "shared/breadcrumbs" %>
 <div class="follow-page d-flex jutify-content-center">
   <div class="follows">
     <div class="follows-header">
@@ -29,3 +35,4 @@
     </div>
   </div>
 </div>
+<%= render "shared/footer" %>

@@ -54,6 +54,8 @@
   width: 100%;
   background-color: #fff;
   padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-radius: 5px;
   &-header p{
     text-align: center;
     margin: 16px 0;
@@ -64,6 +66,10 @@
 
 .user-show-tweet-list-container {
   background-color: #dddbdb;
+}
+
+.user-show-no-tweet-text {
+  color: #999;
 }
 
 .user-show-tweet {
