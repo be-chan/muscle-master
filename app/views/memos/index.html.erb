@@ -1,7 +1,9 @@
 <%= render "shared/header"%>
 <%= render "shared/flash_message"%>
+<% breadcrumb :memo_index %>
+<%= render "shared/breadcrumbs" %>
 <div class="memo-page">
-  <div class="memo-title"><%= @user.nickname %>のトレメモ</div>
+  <div class="memo-title"><%= @user.nickname %>のメモ</div>
   <div class="memo-new-page-btn">
     <div class="search-btn">
       <%= search_form_for @q, url: request.path, id: 'memo-search-form' do |f| %>
@@ -13,7 +15,7 @@
           <% end %>
         </div>
         <div class="text-right mr-3">
-          <%= link_to '検索クリア', request.path, class:"btn btn-info" %>
+          <%= link_to '全件表示', request.path, class:"btn btn-info" %>
         </div>
       <% end %>
     </div>

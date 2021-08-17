@@ -1,4 +1,6 @@
 <%= render "shared/header" %>
+<% breadcrumb :tweet_show, @tweet %>
+<%= render "shared/breadcrumbs_gray" %>
 <div class="tweet-show-page d-flex align-items-center justify-content-center flex-column">
   <div class="tweet-show-container pt-2 pr-2 pl-2 pb-0">
     <div class="tweet-show-time p-2 d-flex justify-content-between">
