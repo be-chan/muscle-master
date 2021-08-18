@@ -38,12 +38,12 @@
 <div class="user-show-tweet-list-container d-flex justify-content-center">
   <div class="user-show-tweets">
     <div class="user-show-tweets-header">
-      <p><%= @user.nickname %>のつぶやき</p>
+      <p><%= @user.nickname %>のシェア投稿(<%= @user.tweets.length %>件)</p>
     </div>
     <div class="user-show-tweets-body">
     <ul>
       <% if @user.tweets.length == 0 %>
-        <li class="user-show-no-tweet-text d-flex justify-content-center">このユーザーはツイートがありません</li>
+        <li class="user-show-no-tweet-text d-flex justify-content-center">このユーザーはシェア投稿がありません</li>
       <% else %>
         <% @user.tweets.each do |tweet| %>
           <li class="user-show-tweet p-2 d-flex">
@@ -54,9 +54,19 @@
                 <div class="user-show-tweet-text user-show-training-content p-1 bg-info text-white rounded-pill d-inline-block">
                   <%= tweet.memo.training_content %>/<%= tweet.memo.weight %>kg/<%= tweet.memo.training_time %>回/<%= tweet.memo.set_count.name %>セット
                 </div>
-                <div class="user-show-tweet-like-comment-count pt-2">
-                  いいね数<%= render "tweets/like_count", { likes: tweet.likes } %>件
-                  コメント数<%= render "tweets/comment_count", {comments: tweet.comments } %>件
+                <div class="row parts pt-2">
+                  <div id="like-icon-tweet-<%= tweet.id.to_s %>">
+                    <% if tweet.liked_by(current_user).present? %>
+                      <%= link_to "", tweet_like_path(tweet.id, tweet.liked_by(current_user)), method: :DELETE, remote: true, class: "loved hide-text" %>
+                    <% else %>
+                      <%= link_to "", tweet_likes_path(tweet), method: :POST, remote: true, class: "love hide-text" %>
+                    <% end %>
+                  </div>
+                  <div id="like-text-tweet-<%= tweet.id.to_s %>">
+                    <%= render "tweets/like_count", { likes: tweet.likes } %>
+                  </div>
+                  <%= link_to "", tweet_path(tweet.id), class: "comment" %>
+                  <%= render "tweets/comment_count", { comments: tweet.comments }%>
                 </div>
               </div>
               <div class="user-show-tweet-time ml-auto d-flex flex-column">

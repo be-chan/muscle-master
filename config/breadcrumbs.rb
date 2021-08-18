@@ -18,12 +18,12 @@ crumb :memo_tweet_new do |memo|
 end
 
 crumb :tweet_index do 
-  link "メモつぶやき一覧", tweets_path
+  link "メモシェア一覧", tweets_path
   parent :memo_index
 end
 
 crumb :tweet_show do |tweet|
-  link "つぶやき詳細", tweet_path(tweet)
+  link "メモシェア詳細", tweet_path(tweet)
   parent :tweet_index
 end
 
