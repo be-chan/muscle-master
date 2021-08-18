@@ -65,3 +65,4 @@ gem 'active_hash'
 gem 'kaminari'
 gem 'ransack'
 gem 'gretel'
+gem 'aws-sdk-s3', require: false
