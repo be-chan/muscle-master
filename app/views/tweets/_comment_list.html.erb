@@ -1,5 +1,5 @@
 <% if tweet.comments.length == 0 %>
-  <li class="no-comment-show-text d-flex justify-content-center">このツイートにコメントがありません</li>
+  <li class="no-comment-show-text d-flex justify-content-center">このシェアにコメントがありません</li>
 <% else %>
   <% tweet.comments.order('created_at DESC').each do |comment| %>
     <li class="comment-show-list-element d-flex">
@@ -25,7 +25,8 @@
           <% end %>
         <% end %>
         <span class="comment-date mt-auto"> 
-          <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          <%#= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          <%= time_ago_in_words(comment.created_at) + "前" %>
         </span>
       </div>
     </li>

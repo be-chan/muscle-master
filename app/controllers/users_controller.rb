@@ -7,13 +7,11 @@ class UsersController < ApplicationController
   end
 
   def following
-    # @userがフォローしているユーザー
     @users = @user.following
     render 'show_follow'
   end
 
   def followers
-    # @userをフォローしているユーザー
     @users = @user.followers
     render 'show_follower'
   end
