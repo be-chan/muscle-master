@@ -1,18 +1,18 @@
-require 'rails_helper' 
+require 'rails_helper'
 
-RSpec.describe "メモ新規登録", type: :system do
+RSpec.describe 'メモ新規登録', type: :system do
   before do
     @user = FactoryBot.create(:user)
     @memo = FactoryBot.build(:memo)
   end
 
-  context 'メモ新規登録ができるとき'do
+  context 'メモ新規登録ができるとき' do
     it 'ログインしたユーザーはメモの登録できる' do
       visit new_user_session_path
       fill_in 'user_email', with: @user.email
       fill_in 'user_password', with: @user.password
       find('input[name="commit"]').click
-      expect(page).to have_selector ".add-training"
+      expect(page).to have_selector '.add-training'
       visit new_memo_path
       select '2020', from: 'memo[start_time(1i)]'
       select '1月', from: 'memo[start_time(2i)]'
@@ -21,11 +21,11 @@ RSpec.describe "メモ新規登録", type: :system do
       fill_in 'memo_weight', with: @memo.weight
       fill_in 'memo_training_time', with: @memo.training_time
       select '1', from: 'memo[set_count_id]'
-      expect{
+      expect do
         find('input[name="commit"]').click
-      }.to change { Memo.count }.by(1)
+      end.to change { Memo.count }.by(1)
       expect(current_path).to eq(memos_path)
-      expect(page).to have_content('トレーニング内容を新しくメモしました')  
+      expect(page).to have_content('トレーニング内容を新しくメモしました')
       expect(page).to have_content('2020-01-01')
       expect(page).to have_content(@memo.training_content)
       expect(page).to have_content(@memo.weight)
@@ -34,10 +34,10 @@ RSpec.describe "メモ新規登録", type: :system do
     end
   end
 
-  context 'メモ新規登録ができないとき'do
+  context 'メモ新規登録ができないとき' do
     it 'ログインしていないと新規メモ登録ページに遷移できない' do
       visit root_path
-      expect(page).to have_no_selector ".add-training"
+      expect(page).to have_no_selector '.add-training'
     end
   end
 end
@@ -57,13 +57,13 @@ RSpec.describe 'メモ編集', type: :system do
       visit edit_memo_path(@memo1)
       expect(
         find('#memo_start_time_1i').value
-      ).to eq(@memo1.start_time.year.to_s )
+      ).to eq(@memo1.start_time.year.to_s)
       expect(
         find('#memo_start_time_2i').value
-      ).to eq(@memo1.start_time.month.to_s )
+      ).to eq(@memo1.start_time.month.to_s)
       expect(
         find('#memo_start_time_3i').value
-      ).to eq(@memo1.start_time.day.to_s )
+      ).to eq(@memo1.start_time.day.to_s)
       expect(
         find('#memo_training_content').value
       ).to eq(@memo1.training_content)
@@ -79,16 +79,16 @@ RSpec.describe 'メモ編集', type: :system do
       select '2019', from: 'memo[start_time(1i)]'
       select '2月', from: 'memo[start_time(2i)]'
       select '2', from: 'memo[start_time(3i)]'
-      fill_in 'memo_training_content', with: @memo1.training_content + "編集"
+      fill_in 'memo_training_content', with: @memo1.training_content + '編集'
       fill_in 'memo_weight', with: @memo1.weight + 1
       fill_in 'memo_training_time', with: @memo1.training_time + 1
       select '2', from: 'memo[set_count_id]'
-      expect{
+      expect do
         find('input[name="commit"]').click
-      }.to change { Memo.count }.by(0)
-      expect(page).to have_content('トレーニング内容を更新しました') 
+      end.to change { Memo.count }.by(0)
+      expect(page).to have_content('トレーニング内容を更新しました')
       expect(page).to have_content('2019-02-02')
-      expect(page).to have_content(@memo1.training_content + "編集")
+      expect(page).to have_content(@memo1.training_content + '編集')
       expect(page).to have_content(@memo1.weight + 1)
       expect(page).to have_content(@memo1.training_time + 1)
       expect(page).to have_content('2')
@@ -110,7 +110,6 @@ RSpec.describe 'メモ編集', type: :system do
   end
 end
 
-
 RSpec.describe 'メモ削除', type: :system do
   before do
     @memo1 = FactoryBot.create(:memo)
@@ -123,11 +122,11 @@ RSpec.describe 'メモ削除', type: :system do
       fill_in 'user_password', with: @memo1.user.password
       find('input[name="commit"]').click
       expect(page).to have_link href: memo_path(@memo1)
-      expect{
+      expect do
         find_link(href: memo_path(@memo1)).click
-        expect(page.accept_confirm).to eq "本当に削除しマッスルか？"
+        expect(page.accept_confirm).to eq '本当に削除しマッスルか？'
         expect(page).to have_content('トレーニング内容を削除しました')
-      }.to change{ Memo.count }.by(-1) 
+      end.to change { Memo.count }.by(-1)
       expect(page).to have_no_content(@memo1)
     end
   end

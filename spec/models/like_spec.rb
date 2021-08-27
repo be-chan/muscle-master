@@ -17,7 +17,7 @@ RSpec.describe Like, type: :model do
         @like.user_id = another_user.id
         expect(@like).to be_valid
       end
-      
+
       it 'user_idが同じでもtweet_idが違う場合は保存ができる' do
         @like.save
         another_tweet = FactoryBot.create(:tweet)

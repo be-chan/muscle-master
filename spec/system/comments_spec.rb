@@ -16,11 +16,10 @@ RSpec.describe 'コメント投稿', type: :system do
     visit tweets_path
     visit tweet_path(@tweet)
     fill_in 'comment_body', with: @comment
-    expect{
+    expect  do
       find('#comment_body').send_keys :return
-    }.to change { Comment.count }.by(1)
+    end.to change { Comment.count }.by(1)
     expect(current_path).to eq tweet_path(@tweet)
     expect(page).to have_content @comment
   end
 end
-

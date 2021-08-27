@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :request do
+RSpec.describe 'Users', type: :request do
   before do
     @user = FactoryBot.create(:user)
   end
-  describe "GET /sign_in" do
+  describe 'GET /sign_in' do
     context 'ログインしている場合' do
       it 'ログインしたときにメモのindexページで正常にレスポンスが返ってくるか' do
         sign_in @user
@@ -21,7 +21,7 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe "GET /show" do
+  describe 'GET /show' do
     it 'ユーザーのshowページで正常にレスポンスが返ってくるか' do
       sign_in @user
       get user_path(@user)

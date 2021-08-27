@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "いいねをする", type: :system do
+RSpec.describe 'いいねをする', type: :system do
   before do
     @user = FactoryBot.create(:user)
     @tweet = FactoryBot.create(:tweet)
@@ -16,10 +16,10 @@ RSpec.describe "いいねをする", type: :system do
       expect(current_path).to eq(memos_path)
       visit tweets_path
       expect(page).to have_link href: tweet_likes_path(@like.tweet.id)
-      expect{
+      expect do
         find_link(href: tweet_likes_path(@like.tweet.id)).click
         sleep 0.1
-      }.to change { Like.count }.by(1)
+      end.to change { Like.count }.by(1)
       expect(current_path).to eq(tweets_path)
       expect(page).to have_no_link href: tweet_likes_path(@like.tweet.id)
     end
@@ -32,7 +32,7 @@ RSpec.describe "いいねをする", type: :system do
   end
 end
 
-RSpec.describe "いいねを解除(削除)する", type: :system do
+RSpec.describe 'いいねを解除(削除)する', type: :system do
   before do
     @user = FactoryBot.create(:user)
     @tweet = FactoryBot.create(:tweet)
@@ -48,10 +48,10 @@ RSpec.describe "いいねを解除(削除)する", type: :system do
       expect(current_path).to eq(memos_path)
       visit tweets_path
       expect(page).to have_link href: tweet_like_path(@like.tweet.id, @like.id)
-      expect{
-        find_link(href: tweet_like_path(@like.tweet.id,@like.id)).click
+      expect do
+        find_link(href: tweet_like_path(@like.tweet.id, @like.id)).click
         sleep 0.1
-      }.to change { Like.count }.by(-1)
+      end.to change { Like.count }.by(-1)
       expect(current_path).to eq tweets_path
       expect(page).to have_no_link tweet_like_path(@like.tweet.id, @like.id)
     end

@@ -6,8 +6,6 @@ class Relationship < ApplicationRecord
   validates :following_id, presence: true
   validate :self_follow_valid
   def self_follow_valid
-    if follower_id == following_id
-      errors.add(:follower_id, 'が自分の場合はフォローできません')
-    end
+    errors.add(:follower_id, 'が自分の場合はフォローできません') if follower_id == following_id
   end
 end

@@ -1,8 +1,8 @@
-require 'rails_helper' #編集の画像とパスワード部分
+require 'rails_helper'
 
-RSpec.describe "ユーザー登録", type: :system do
+RSpec.describe 'ユーザー登録', type: :system do
   before do
-    @user = FactoryBot.build(:user) 
+    @user = FactoryBot.build(:user)
   end
   context 'ユーザー登録ができるとき' do
     it '正しい情報を入力すればユーザー新規登録ができてメモ一覧ページへ移動する' do
@@ -14,9 +14,9 @@ RSpec.describe "ユーザー登録", type: :system do
       fill_in 'user_password', with: @user.password
       fill_in 'user_password_confirmation', with: @user.password_confirmation
       fill_in 'introduce_text', with: @user.introduction
-      expect{
+      expect  do
         find('input[name="commit"]').click
-      }.to change { User.count }.by(1)
+      end.to change { User.count }.by(1)
       expect(current_path).to eq(memos_path)
       expect(page).to have_content('ログアウト')
       expect(page).to have_no_content('サインアップ')
@@ -33,9 +33,9 @@ RSpec.describe "ユーザー登録", type: :system do
       fill_in 'user_password', with: ''
       fill_in 'user_password_confirmation', with: ''
       fill_in 'introduce_text', with: ''
-      expect{
+      expect  do
         find('input[name="commit"]').click
-      }.to change { User.count }.by(0)
+      end.to change { User.count }.by(0)
       expect(current_path).to eq user_registration_path
     end
   end
@@ -94,17 +94,17 @@ RSpec.describe 'ユーザー編集', type: :system do
       expect(
         find('#introduce_text').value
       ).to eq(@user1.introduction)
-      attach_file 'profile_image_upload', "#{Rails.root}/public/images/test2_image.jpeg" 
-      fill_in 'user_nickname', with: @user1.nickname + "編集マン"
-      fill_in 'user_email', with: "edit" + @user1.email
-      fill_in 'introduce_text', with: @user1.introduction + "編集しました"
-      expect{
+      attach_file 'profile_image_upload', "#{Rails.root}/public/images/test2_image.jpeg"
+      fill_in 'user_nickname', with: @user1.nickname + '編集マン'
+      fill_in 'user_email', with: 'edit' + @user1.email
+      fill_in 'introduce_text', with: @user1.introduction + '編集しました'
+      expect  do
         find('input[name="commit"]').click
-      }.to change { User.count }.by(0)
+      end.to change { User.count }.by(0)
       expect(current_path).to eq user_path(@user1)
       expect(page).to have_content('アカウント情報を変更しました')
-      expect(page).to have_content @user1.nickname + "編集マン"
-      expect(page).to have_content @user1.introduction + "編集しました"
+      expect(page).to have_content @user1.nickname + '編集マン'
+      expect(page).to have_content @user1.introduction + '編集しました'
     end
   end
   context 'ユーザーを編集できないとき' do
@@ -136,11 +136,11 @@ RSpec.describe 'ユーザー削除', type: :system do
       find('input[name="commit"]').click
       visit user_path(@user1)
       expect(page).to have_link href: user_registration_path
-      expect{
+      expect do
         find_link(href: user_registration_path).click
-        expect(page.accept_confirm).to eq "本当に退会しますか？"
+        expect(page.accept_confirm).to eq '本当に退会しますか？'
         expect(current_path).to eq root_path
-      }.to change{ User.count }.by(-1) 
+      end.to change { User.count }.by(-1)
     end
   end
   context 'ユーザー削除ができないとき' do

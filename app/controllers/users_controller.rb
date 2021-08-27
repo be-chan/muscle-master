@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_action :user_find_params
 
   def show
-    
   end
 
   def following
@@ -16,7 +15,7 @@ class UsersController < ApplicationController
     render 'show_follower'
   end
 
-  private 
+  private
 
   def user_find_params
     @user = User.find(params[:id])
