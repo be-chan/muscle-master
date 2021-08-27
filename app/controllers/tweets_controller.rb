@@ -18,6 +18,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(tweet_params)
     if @tweet.save
       redirect_to tweets_path
+      flash[:notice] = '投稿が完了しました'
     else
       render :new
     end
@@ -26,6 +27,7 @@ class TweetsController < ApplicationController
   def destroy
     @tweet.destroy
     redirect_to tweets_path
+    flash[:alert] = '削除が完了しました'
   end
 
   private

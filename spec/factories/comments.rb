@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :comment do
-    body { 'お疲れ様でした。とても良い１日になりましたね！' }
+    body { Faker::Lorem.paragraph_by_chars(number: 100, supplemental: false) }
 
     association :user
     association :tweet

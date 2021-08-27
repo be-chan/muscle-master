@@ -26,6 +26,6 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_in_path_for(resources)
-    memos_path(resources)
+    memos_path
   end
 end

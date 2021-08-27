@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :tweet do
-    body  { '本日はとても良い１日で筋トレができました' }
+    body  { Faker::Lorem.paragraph_by_chars(number: 100, supplemental: false) }
 
     association :user
     association :memo

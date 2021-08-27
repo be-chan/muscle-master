@@ -1,5 +1,5 @@
 class MemosController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :new, :edit, :update, :destroy]
   before_action :user_memos_find_params, only: [:index, :new, :edit]
   before_action :memos_find_params, only: [:edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
@@ -39,6 +39,7 @@ class MemosController < ApplicationController
   def destroy
     @memo.destroy
     redirect_to memos_path
+    flash[:alert] = 'トレーニング内容を削除しました'
   end
 
   private
