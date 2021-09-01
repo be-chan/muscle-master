@@ -2,8 +2,8 @@
 <%= render "shared/flash_message"%>
 <% breadcrumb :tweet_index %>
 <%= render "shared/breadcrumbs_gray" %>
-<div class="tweet-index-page d-flex justify-content-center align-items-center">
-  <div class="tweets">
+<div class="tweet-index-page d-flex justify-content-center align-items-baseline">
+  <div class="tweets mt-4 mb-4">
     <div class="tweets-header">
       <p>メモシェア投稿一覧</p>
     </div>
@@ -34,8 +34,8 @@
                 </p>
               </div>  
               <div class="tweet-text-box d-inline-block">
-                <p class="tweet-text tweet-training-content p-1 bg-info text-white rounded-pill">
-                  <%= tweet.memo.training_content %>/<%= tweet.memo.weight%>kg/<%= tweet.memo.training_time %>回/<%= tweet.memo.set_count.name %>セット
+                <p class="tweet-text tweet-training-content p-1 bg-info text-white rounded">
+                  <%= tweet.memo.training_content %><br/><%= tweet.memo.weight%>kg/<%= tweet.memo.training_time %>回/<%= tweet.memo.set_count.name %>セット
                 </p>
               </div>
               <div class="row parts">

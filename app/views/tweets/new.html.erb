@@ -1,14 +1,14 @@
 <%= render "shared/header"%>
 <% breadcrumb :memo_tweet_new, @memo %>
 <%= render "shared/breadcrumbs_gray" %>
-<div class="tweet-new-page-container">
+<div class="tweet-new-page-container d-flex justify-content-center align-items-center">
   <div class="tweet-new-page">
-    <div class="tweet-new-title">ツイート投稿</div>
+    <div class="tweet-new-title">メモシェア投稿</div>
     <div class="tweet-new-memo-content p-2 d-flex justify-content-center">
-      <div class="bg-info text-center text-white p-1 rounded-pill">
+      <div class="tweet-new-mobile-text bg-info text-center text-white p-1 rounded">
         <%= @memo.training_content %>
-        <%= @memo.weight %>kg
-        <%= @memo.training_time %>回
+        <%= @memo.weight %>kg/
+        <%= @memo.training_time %>回/
         <%= @memo.set_count.name %>セット
       </div>
     </div>

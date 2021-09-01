@@ -1,5 +1,5 @@
 .user-show-page {
-  height: 100%;
+  min-height: 100%;
   background-color: #dddbdb;
 }
 
@@ -54,6 +54,7 @@
   width: 100%;
   background-color: #fff;
   padding-bottom: 16px;
+  margin-top: 16px;
   margin-bottom: 16px;
   border-radius: 5px;
   &-header p{
@@ -121,6 +122,9 @@
     }
     &-time {
       font-size: $mobile-font-size;
+    }
+    &-delete-icon {
+      font-size: 0.7rem;
     }
     &-like-comment-count {
       font-size: $mobile-font-size;

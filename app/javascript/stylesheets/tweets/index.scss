@@ -1,5 +1,5 @@
 .tweet-index-page {
-  height: 100%;
+  min-height: 100%;
   background-color: #dddbdb;
 }
 
@@ -43,7 +43,7 @@
     white-space: nowrap;
   }
   &-training-content {
-    white-space: nowrap;
+    // white-space: nowrap;
   }
 }
 

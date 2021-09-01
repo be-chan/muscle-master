@@ -1,7 +1,13 @@
+.tweet-new-page {
+  max-width: 576px;
+  background-color: #fff;
+  padding: 1.25rem;
+  width: 100%;
+}
+
 .tweet-new-page-container {
   background-color: #dddbdb;
-  height: 100%;
-  padding-top: 10vh;
+  min-height: 100%;
 }
 
 .tweet-new-title {
@@ -11,13 +17,16 @@
   margin-bottom: 14px;
 }
 
-.tweet-new-page {
-  max-width: 480px;
-  background-color: #fff;
-  padding: 1.25rem;
-  margin: 0 auto;
-}
 
 .tweet-error-message {
   color: red;
+}
+
+@media(max-width: 576px) {
+  .tweet-new-mobile-text {
+    font-size: 10px;
+  }
+  .tweet-new-title {
+    font-size: 20px;
+  }
 }
