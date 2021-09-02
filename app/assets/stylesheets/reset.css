@@ -129,5 +129,5 @@ legend {
 html,
 body {
   height: 100%;
-  /* background-color: #dddbdb; */
+  -webkit-text-size-adjust: 100%;
 }
