@@ -95,16 +95,16 @@ RSpec.describe 'ユーザー編集', type: :system do
         find('#introduce_text').value
       ).to eq(@user1.introduction)
       attach_file 'profile_image_upload', "#{Rails.root}/public/images/test2_image.jpeg"
-      fill_in 'user_nickname', with: @user1.nickname + '編集マン'
-      fill_in 'user_email', with: 'edit' + @user1.email
-      fill_in 'introduce_text', with: @user1.introduction + '編集しました'
+      fill_in 'user_nickname', with: "#{@user1.nickname}編集マン"
+      fill_in 'user_email', with: "edit#{@user1.email}"
+      fill_in 'introduce_text', with: "#{@user1.introduction}編集しました"
       expect  do
         find('input[name="commit"]').click
       end.to change { User.count }.by(0)
       expect(current_path).to eq user_path(@user1)
       expect(page).to have_content('アカウント情報を変更しました')
-      expect(page).to have_content @user1.nickname + '編集マン'
-      expect(page).to have_content @user1.introduction + '編集しました'
+      expect(page).to have_content "#{@user1.nickname}編集マン"
+      expect(page).to have_content "#{@user1.introduction}編集しました"
     end
   end
   context 'ユーザーを編集できないとき' do

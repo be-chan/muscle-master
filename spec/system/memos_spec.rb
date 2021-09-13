@@ -79,7 +79,7 @@ RSpec.describe 'メモ編集', type: :system do
       select '2019', from: 'memo[start_time(1i)]'
       select '2月', from: 'memo[start_time(2i)]'
       select '2', from: 'memo[start_time(3i)]'
-      fill_in 'memo_training_content', with: @memo1.training_content + '編集'
+      fill_in 'memo_training_content', with: "#{@memo1.training_content}編集"
       fill_in 'memo_weight', with: @memo1.weight + 1
       fill_in 'memo_training_time', with: @memo1.training_time + 1
       select '2', from: 'memo[set_count_id]'
@@ -88,7 +88,7 @@ RSpec.describe 'メモ編集', type: :system do
       end.to change { Memo.count }.by(0)
       expect(page).to have_content('トレーニング内容を更新しました')
       expect(page).to have_content('2019-02-02')
-      expect(page).to have_content(@memo1.training_content + '編集')
+      expect(page).to have_content("#{@memo1.training_content}編集")
       expect(page).to have_content(@memo1.weight + 1)
       expect(page).to have_content(@memo1.training_time + 1)
       expect(page).to have_content('2')
