@@ -12,7 +12,7 @@ RSpec.describe 'Memos', type: :request do
     end
 
     it 'indexアクションにリクエストするとレスポンスに投稿済みのメモのトレーニング内容が存在する' do
-      get tweets_path
+      get memos_path
       expect(response.body).to include(@memo.training_content)
     end
   end
