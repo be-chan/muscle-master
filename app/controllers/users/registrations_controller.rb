@@ -6,9 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :ensure_normal_user, only: [:update, :destroy]
 
   def ensure_normal_user
-    if resource.email == 'guest@example.com'
-      redirect_to memos_path, alert: 'ゲストユーザーの編集と退会はできません'
-    end
+    redirect_to memos_path, alert: 'ゲストユーザーの編集と退会はできません' if resource.email == 'guest@example.com'
   end
 
   # GET /resource/sign_up
