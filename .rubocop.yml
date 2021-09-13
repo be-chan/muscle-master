@@ -10,6 +10,7 @@ AllCops:
    - "bin/*"
    - "node_modules/**/*"
    - "Gemfile"
+   - "spec/factories/relationships.rb"
 
 
 # 1行あたりの文字数をチェックする
