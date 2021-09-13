@@ -1,0 +1,79 @@
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@1.1.0
+
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.6.5-node-browsers
+        environment:
+          BUNDLER_VERSION: 2.1.4
+    steps:
+      - checkout
+      - ruby/install-deps
+
+  test:
+    parallelism: 3
+    docker:
+      - image: circleci/ruby:2.6.5-node-browsers
+        environment:
+          DB_HOST: 127.0.0.1
+          RAILS_ENV: test
+          BUNDLER_VERSION: 2.1.4
+      - image: circleci/mysql:5.6
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+          MYSQL_ROOT_HOST: "%"
+
+    steps:
+      - checkout
+      - ruby/install-deps
+      - run: yarn install
+      - run: mv config/database.yml.ci config/database.yml
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+      - run:
+          name: RuboCop
+          command: bundle exec rubocop
+      - run: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+      - run: mkdir ~/rspec
+      - run:
+          command: bundle exec rspec --format progress --format RspecJunitFormatter -o ~/rspec/rspec.xml
+          when: always
+      - store_test_results:
+          path: ~/rspec
+
+  deploy:
+    docker:
+      - image: circleci/ruby:2.6.5-node-browsers
+        environment:
+          BUNDLER_VERSION: 2.1.4
+    steps:
+      - checkout
+      - ruby/install-deps
+      - add_ssh_keys:
+          fingerprints: "xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx"
+      - deploy:
+          name: Capistrano deploy
+          command: bundle exec cap production deploy
+
+workflows:
+  version: 2
+  build_accept_deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+
