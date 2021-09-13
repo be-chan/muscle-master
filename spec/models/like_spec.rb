@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Like, type: :model do
   before do
     @like = FactoryBot.build(:like)
-    sleep 0.1
+    # sleep 0.1
   end
   describe 'いいねの正常値と異常値の確認' do
     context 'いいねができるとき' do
