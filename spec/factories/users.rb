@@ -6,8 +6,8 @@ FactoryBot.define do
     password_confirmation  { password }
     introduction           { Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false) }
 
-    after(:build) do |user|
-      user.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
-    end
+    # after(:build) do |user|
+    #   user.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
+    # end
   end
 end

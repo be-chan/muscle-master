@@ -5,7 +5,7 @@ RSpec.describe Relationship, type: :model do
     @user1 = FactoryBot.create(:user)
     @user2 = FactoryBot.create(:user)
     @relationship = FactoryBot.build(:relationship, follower_id: @user1.id, following_id: @user2.id)
-    # sleep 0.1
+    sleep 0.1
   end
   describe 'フォロー機能' do
     context '保存できる場合' do
