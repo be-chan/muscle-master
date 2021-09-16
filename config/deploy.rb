@@ -18,7 +18,7 @@ set :rbenv_ruby, '2.6.5'
 #                                   keys: ['~/.ssh/bechama.pem'] 
 
 set :ssh_options, auth_methods: ['publickey'],
-                                  keys: '~/.ssh/id_rsa_648351fb69c34a44966c59a3ffa0d5cd'] 
+                                  keys: ['~/.ssh/id_rsa_648351fb69c34a44966c59a3ffa0d5cd'] 
 
 # プロセス番号を記載したファイルの場所
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
