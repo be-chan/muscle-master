@@ -14,11 +14,13 @@ set :rbenv_type, :user
 set :rbenv_ruby, '2.6.5'
 
 # どの公開鍵を利用してデプロイするか
-set :ssh_options, auth_methods: ['publickey'],
-                                  keys: ['~/.ssh/bechama.pem'] 
-
+# ローカル用のデプロイ
 # set :ssh_options, auth_methods: ['publickey'],
-#                                   keys: ['~/.ssh/id_rsa_648351fb69c34a44966c59a3ffa0d5cd'] 
+#                                   keys: ['~/.ssh/bechama.pem'] 
+
+# CircleCI用にデプロイ
+set :ssh_options, auth_methods: ['publickey'],
+                                  keys: ['~/.ssh/id_rsa_c4f2f04ca5ba8f69ff9ed6259050eaa8'] 
 
 # プロセス番号を記載したファイルの場所
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
