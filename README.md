@@ -8,6 +8,7 @@ Things you may want to cover:
 * Ruby version
 
 * System dependencies
+# 開発背景
 
 * Configuration
 
