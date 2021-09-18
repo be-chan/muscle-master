@@ -11,6 +11,7 @@ AllCops:
    - "node_modules/**/*"
    - "Gemfile"
    - "spec/factories/relationships.rb"
+   - "spec/rails_helper.rb"
 
 
 # 1行あたりの文字数をチェックする
