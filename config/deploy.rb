@@ -18,7 +18,7 @@ set :rbenv_ruby, '2.6.5'
 # set :ssh_options, auth_methods: ['publickey'],
 #                                   keys: ['~/.ssh/bechama.pem'] 
 
-# CircleCI用にデプロイ
+# CircleCI用のデプロイ
 set :ssh_options, auth_methods: ['publickey'],
                                   keys: ['~/.ssh/id_rsa_c4f2f04ca5ba8f69ff9ed6259050eaa8'] 
 

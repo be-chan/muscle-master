@@ -7,7 +7,7 @@ RSpec.describe 'Relationships', type: :system do
     @relationship = FactoryBot.create(:relationship, follower_id: @user1.id, following_id: @user2.id)
   end
 
-  context 'フォローとフォロー解除ができるとき' do
+  context 'フォローとフォロー解除ができるとき', js: true do
     it 'ユーザーをフォロー、フォロー解除できる' do
       visit new_user_session_path
       fill_in 'user_email', with: @user2.email

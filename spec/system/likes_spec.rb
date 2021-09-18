@@ -7,7 +7,7 @@ RSpec.describe 'いいねをする', type: :system do
     @like = FactoryBot.build(:like, tweet_id: @tweet.id)
   end
 
-  context 'いいねができるとき' do
+  context 'いいねができるとき', js: true do
     it 'ログインしているユーザーはいいねができる' do
       visit new_user_session_path
       fill_in 'user_email', with: @user.email
@@ -39,7 +39,7 @@ RSpec.describe 'いいねを解除(削除)する', type: :system do
     @like = FactoryBot.create(:like, tweet_id: @tweet.id, user_id: @user.id)
   end
 
-  context 'いいねが解除(削除)できるとき' do
+  context 'いいねが解除(削除)できるとき', js: true do
     it 'ログインしているユーザーは元々いいねしてたメモシェア投稿のいいねを解除することができる' do
       visit new_user_session_path
       fill_in 'user_email', with: @user.email

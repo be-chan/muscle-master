@@ -57,7 +57,7 @@ RSpec.describe 'メモシェア削除', type: :system do
     @tweet1 = FactoryBot.create(:tweet)
     @tweet2 = FactoryBot.create(:tweet)
   end
-  context 'メモシェア削除ができるとき' do
+  context 'メモシェア削除ができるとき', js: true do
     it 'ログインしたユーザーは自らが投稿したメモシェアの削除ができる' do
       visit new_user_session_path
       fill_in 'user_email', with: @tweet1.user.email

@@ -128,7 +128,7 @@ RSpec.describe 'ユーザー削除', type: :system do
     @user1 = FactoryBot.create(:user)
     @user2 = FactoryBot.create(:user)
   end
-  context 'ユーザー削除ができるとき' do
+  context 'ユーザー削除ができるとき', js: true do
     it 'ログインしたユーザーは自身のユーザー情報を削除できる(退会)' do
       visit new_user_session_path
       fill_in 'user_email', with: @user1.email

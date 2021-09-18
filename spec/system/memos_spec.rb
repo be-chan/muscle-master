@@ -115,7 +115,7 @@ RSpec.describe 'メモ削除', type: :system do
     @memo1 = FactoryBot.create(:memo)
     @memo2 = FactoryBot.create(:memo)
   end
-  context 'メモ削除ができるとき' do
+  context 'メモ削除ができるとき', js: true do
     it 'ログインしたユーザーは自らが投稿したメモの削除ができる' do
       visit new_user_session_path
       fill_in 'user_email', with: @memo1.user.email

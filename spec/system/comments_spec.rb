@@ -6,7 +6,7 @@ RSpec.describe 'コメント投稿', type: :system do
     @comment = FactoryBot.build(:comment)
   end
 
-  it 'ログインしたユーザーはツイート詳細ページでコメント投稿できる' do
+  it 'ログインしたユーザーはツイート詳細ページでコメント投稿できる', js: true do
     visit new_user_session_path
     visit new_user_session_path
     fill_in 'user_email', with: @tweet.user.email
