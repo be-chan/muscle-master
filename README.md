@@ -1,25 +1,76 @@
-# README
+# アプリ名: Muscle Master(マッスルマスター)
+## 概要
+ 筋トレした内容をメモをし、その内容をシェア投稿できるSNSアプリです。
+ また、筋トレの内容をカレンダーで日付ごとに見直すことができます。
+## URL 
+- https://www.muscle-master.link
+## ゲスト用アカウント
+- トップページのログインボタンおして、ページへ遷移した後にゲストユーザーでログインできます。(ゲストユーザーの編集と削除は出来ない仕様にしています)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 使用技術
+- Ruby 2.6.5
+- Ruby on Rails 6.0.0
+- HTML/CSS(SCSS)
+- Bootstrap
+- Javascript
+- Nginx
+- Unicorn
+- MariaDB
+- AWS(VPC/EC2/Route53/ALB/ACM/S3)
+- Capistrano3(自動デプロイ)
+- RSpec(テスト)
+- Rubocop(コード解析ツール)
+- Docker/docker-compose(開発環境のみ)
+- CircleCi(自動テスト)
 
-Things you may want to cover:
+# インフラ構成図
+<img width="965" alt="スクリーンショット 2021-09-19 23 10 59" src="https://user-images.githubusercontent.com/70454487/133930698-150c0b40-12f3-4c5b-b22a-2a0f06b928b4.png">
 
-* Ruby version
+# ER図
+<img width="899" alt="スクリーンショット 2021-09-14 3 13 23" src="https://user-images.githubusercontent.com/70454487/133135633-8a62b8c8-d840-401c-aaea-b725284de8ac.png">
 
-* System dependencies
 # 開発背景
+- 普段から筋トレをしているため、自分自身があったら良いなと思ったのと周りでトレーニングしながら、メモをノートで取っている方をよく目の当たりにすることが多いため、自分なりに何か不満点や課題がないか考えて開発に至りました。
+## 現状の課題
+- トレーニングが紙だと後から見返しづらい。
+- 一人で黙々と筋トレも良いが、筋トレ仲間が欲しい
+## 解決策
+- WEBアプリでカレンダーを用いて、日付ごとでトレーニング内容の管理が出来れば、見返しやすい。(メモ機能の実装)
+- 筋トレの内容をSNS形式でシェアすることで、筋トレ仲間を増やせるかもしれない。(メモをシェアするツイート機能の実装)
 
-* Configuration
+# 工夫したポイント
+- メモ機能でカレンダーにトレーニングしている日は背景に緑でダンベルマークが出るようにしました。その際に、そのダンベルマークを押すことによって、トレーニング日付検索をできるようにし、その日のトレーニング内容を簡単見返せるようにしました。
+- Dockerを使用した開発環境、CircleCIによるCI/CDパイプラインの実装、URLのhttps化(ACM)
 
-* Database creation
+# 機能一覧
+- ユーザー登録、ログイン機能(devise)
+  - ユーザー情報編集
+    - 画像プレビュー機能(Javascript)
+  - 詳細ページ(プロフィール)
+- メモ機能
+  - メモ新規、編集、削除機能
+  - メモの検索機能(ransack)
+  - カレンダー(simple_calendar)
+- ツイート機能(メモの内容をシェアする)
+  - ツイートの新規、一覧、詳細、編集、削除
+- コメント機能
+  - コメント一覧を3件ずつ表示(Javascript)
+- いいね機能(Ajax)
+- フォロー機能(Ajax)
+  - フォロー一覧
+  - フォロワー一覧
+- ページネーション機能(kaminari)
+- パンくずリスト(gretel)
 
-* Database initialization
+# テスト
+- RSpec
+  - 単体テスト(model)
+  - 機能テスト(request)
+  - 結合テスト(system)
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# 課題や今後実装したいもの
+- 完全なレスポンシブデザインの対応(safariで開いた時にフォントサイズが反映されないため)
+- ページネーションやコメント機能などのAjax化
+- 外部APIの導入
+- メモを登録する時にモーダル表示にすること
+- 本番環境にDocker導入
