@@ -13,6 +13,8 @@ services:
       - db 
     ports:
       - "3000:3000"
+    environment:
+      TZ: Asia/Tokyo
     volumes:
       - .:/muscle-master:cached 
       - tmp-data:/muscle-master/tmp/sockets
