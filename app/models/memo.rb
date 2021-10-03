@@ -19,6 +19,7 @@ class Memo < ApplicationRecord
   validate :day_after_tomorrow
   def day_after_tomorrow
     return if start_time.blank?
+    
     errors.add(:start_time, 'は今日までのを選択してください') if start_time > Date.today
   end
 end
