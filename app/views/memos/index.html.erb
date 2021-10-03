@@ -8,8 +8,7 @@
     <div class="search-btn">
       <%= search_form_for @q, url: request.path, id: 'memo-search-form' do |f| %>
         <div class="form-group d-flex justify-content-center">
-          <%#= f.date_field :start_time_cont, include_blank: true, class: 'form-control col-2 mr-2' %>
-          <%= f.search_field :training_content_cont, placeholder: "キーワード", class: 'form-control col-4' %>
+          <%= f.search_field :training_content_cont, placeholder: "キーワード(種目名)", class: 'form-control col-4' %>
           <%= button_tag type: 'submit', class: 'btn btn-default' do %>
             <i class="fa fa-search search-btn-icon"></i>
           <% end %>
