@@ -63,6 +63,7 @@ class MemosController < ApplicationController
 
   def search_memos
     @q = Memo.ransack(params[:q])
-    @memos = @q.result(distinct: true).where(user_id: @user.id).order('start_time DESC', 'updated_at DESC').page(params[:page]).per(3)  
+    @memos = @q.result(distinct: true).where(user_id: @user.id).order('start_time DESC',
+                                                                      'updated_at DESC').page(params[:page]).per(3)
   end
 end
